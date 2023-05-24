@@ -14,6 +14,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm run fake-server`
+Deploys json-server mock.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
+
+Use /todos or /categories endpoint to view data persisted in your browser.\
+You may also see any lint errors in the console.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

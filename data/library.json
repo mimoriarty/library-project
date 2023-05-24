@@ -1,0 +1,47 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "type": "member",
+      "name": "name",
+      "password": "name",
+      "hasPenaltyOngoing": false,
+      "isActive": true,
+      "penaltyExpirationDate": "2018-01-01T00:00:00",
+      "history": [
+        {
+          "id": 1,
+          "readed": "70",
+          "completed": false,
+          "borrowedDate": "2018-01-01T00:00:00",
+          "dueDate": "2018-01-01T00:00:00",
+          "returnedDate": "2018-01-01T00:00:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "librarian",
+      "name": "kerberos",
+      "password": "k35",
+      "hasPenaltyOngoing": false,
+      "isActive": true,
+      "penaltyExpirationDate": null,
+      "history": []
+    }
+  ],
+  "library": [
+    {
+      "id": 1,
+      "name": "The ghost writter",
+      "shortDescription": "The ghost writter",
+      "pages": 445,
+      "author": "One Man",
+      "genres": ["thriller"],
+      "image": "https://images.unsplash.com/photo-1510304018184-111111111111?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+      "isAvailable": false,
+      "borrowerId": 1,
+      "reservations": []
+    }
+  ]
+}
