@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import { LibraryProvider } from './library/Library';
+import { initialState, LibraryReducer } from './reducers/libraryReducer';
 import reportWebVitals from './reportWebVitals';
 
 //Bulma components framework
@@ -12,7 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <LibraryProvider initialState={initialState} reducer={LibraryReducer}>
+        <App />
+      </LibraryProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

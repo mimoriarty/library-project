@@ -1,26 +1,32 @@
-import React, { useState, createContext } from "react";
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Home from "./routes/Home";
-import About from "./routes/About";
-import Header from "./Components/Layout/Header";
+import { useLibrary } from './library/Library';
+import { loadUsers } from './reducers/libraryActions';
+import { getUsers } from './services/user';
+
+import Home from './routes/Home';
+import About from './routes/About';
+import Header from './Components/Layout/Header';
 
 import './App.css';
 
-export const LibraryContext = createContext();
-
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const [, dispatch] = useLibrary();
+
+  useEffect(() => {
+    getUsers().then(res => {
+      dispatch(loadUsers(res));
+    });
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <LibraryContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <Header />
-        <Routes>
-          <Route path='/home' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-        </Routes>
-      </LibraryContext.Provider>
+    <div className='App'>
+      <Header />
+      <Routes>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
+      </Routes>
     </div>
   );
 }
