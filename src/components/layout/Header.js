@@ -3,14 +3,21 @@ import { NavLink } from 'react-router-dom';
 
 import { useLibrary } from '../../library/Library';
 
-export default function Header() {
+const DELAY_NAVBAR_TOGLE = 500;
+
+export default function Header({ toggleFn }) {
   const [navBarActive, setNavBarActive] = useState(false);
   const [state] = useLibrary();
   const { loggedIn } = state;
-
   const toggleNavBar = () => {
     setNavBarActive(!navBarActive);
   };
+  const handleDelayedToggle = () => {
+    setTimeout(() => {
+      toggleNavBar();
+    }, DELAY_NAVBAR_TOGLE);
+  };
+
 
   return (
     <nav className='navbar' role='navigation' aria-label='main navigation'>
@@ -29,9 +36,13 @@ export default function Header() {
         </button>
       </div>
 
-      <div className={'navbar-menu ' + (navBarActive ? 'is-active' : '')}>
+      <div
+        className={'navbar-menu ' + (navBarActive ? 'is-active' : '')}
+        onClick={() => handleDelayedToggle()}
+      >
         <div className='navbar-start'>
           <NavLink to='/home' className='navbar-item'>Home</NavLink>
+          <NavLink to='/users' className='navbar-item'>Users</NavLink>
           <NavLink to='/about' className='navbar-item'>About</NavLink>
         </div>
 
@@ -41,7 +52,7 @@ export default function Header() {
               <button className='button is-primary'>
                 <strong>Sign up</strong>
               </button>
-              <button className='button is-light'>
+              <button className='button is-light' onClick={() => toggleFn()}>
                 Log in
               </button>
             </div>

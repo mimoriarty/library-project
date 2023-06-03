@@ -1,8 +1,8 @@
 export default function Login({ login, handleChangeFn }) {
   return (
-    <form>
+    <>
       <div className='field'>
-        <label className='label'>Username</label>
+        <label className='label'>User</label>
         <div className='control'>
           <input
             className='input'
@@ -19,7 +19,7 @@ export default function Login({ login, handleChangeFn }) {
         <div className='control'>
           <input
             className='input'
-            type='text'
+            type='password'
             name='password'
             value={login.password}
             placeholder='********'
@@ -27,6 +27,6 @@ export default function Login({ login, handleChangeFn }) {
           />
         </div>
       </div>
-    </form>
+    </>
   );
 }

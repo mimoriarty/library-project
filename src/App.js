@@ -1,18 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useLibrary } from './library/Library';
-import { loadUsers } from './reducers/libraryActions';
+import { loadUsers, loginUser, toggleLoginModal } from './reducers/libraryActions';
 import { getUsers } from './services/user';
 
 import Home from './routes/Home';
+import Users from './routes/Users';
 import About from './routes/About';
-import Header from './Components/Layout/Header';
+import Header from './components/layout/Header';
+import Modal from './components/layout/Modal';
+import Login from './components/forms/Login';
 
 import './App.css';
 
+const initialState = {
+  name: '',
+  password: '',
+};
+
 function App() {
-  const [, dispatch] = useLibrary();
+  const [login, setLogin] = useState(initialState);
+  const [state, dispatch] = useLibrary();
+  const { loginModalOpen } = state;
+  const handleToggleModal = () => {
+    dispatch(toggleLoginModal());
+  };
+  const handleLoginSubmit = () => {
+    dispatch(loginUser(login));
+    dispatch(toggleLoginModal());
+    setLogin(initialState);
+  };
+  const handleLoginChange = (e) => {
+    const { name, value } = e.target;
+
+    setLogin({
+      ...login,
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
     getUsers().then(res => {
@@ -22,9 +48,22 @@ function App() {
 
   return (
     <div className='App'>
-      <Header />
+      <Header toggleFn={handleToggleModal} />
+      <Modal
+        isOpen={loginModalOpen}
+        toggleFn={handleToggleModal}
+        submitFn={handleLoginSubmit}
+        title='LogIn'
+        okButton='Login'
+      >
+        <Login
+          login={login}
+          handleChangeFn={handleLoginChange}
+        />
+      </Modal>
       <Routes>
         <Route path='/home' element={<Home />}></Route>
+        <Route path='/users' element={<Users />}></Route>
         <Route path='/about' element={<About />}></Route>
       </Routes>
     </div>

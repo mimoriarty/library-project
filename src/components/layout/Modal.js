@@ -21,8 +21,8 @@ export default function Modal({
           {children}
         </section>
         <footer className='modal-card-foot column'>
-          <button className='button is-success' onClick={submitFn}>{okButton || 'Accept'}</button>
           <button className='button' onClick={toggleFn}>{koButton || 'Cancel'}</button>
+          <button className='button is-success' onClick={submitFn}>{okButton || 'Accept'}</button>
         </footer>
       </div>
     </div>

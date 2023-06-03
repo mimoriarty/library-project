@@ -1,52 +1,19 @@
-import { useState } from 'react';
 import { useLibrary } from '../library/Library';
-import { logginUser } from '../reducers/libraryActions';
+import { toggleLoginModal } from '../reducers/libraryActions';
 
-import Modal from '../Components/Layout/Modal';
-import Login from '../Components/Login';
-import UserBadge from '../Components/UserBadge';
+import UserBadge from '../components/UserBadge';
 
 import digitalLibrary from '../assets/images/digital-library.png';
 
-const initialState = {
-  name: '',
-  password: '',
-};
-
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [login, setLogin] = useState(initialState);
   const [state, dispatch] = useLibrary();
   const { loggedIn } = state;
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
-  const handleToggleModal = () => toggleModal();
-  const handleLoginSubmit = () => {
-    dispatch(logginUser(login));
-    toggleModal();
+  const handleToggleModal = () => {
+    dispatch(toggleLoginModal());
   };
-  const handleLoginChange = (e) => {
-    const { name, value } = e.target;
-
-    setLogin({
-      ...login,
-      [name]: value,
-    });
-  }
 
   return (
     <div>
-      <Modal
-        isOpen={isModalOpen}
-        toggleFn={handleToggleModal}
-        submitFn={handleLoginSubmit}
-        title='LogIn'
-        okButton='Login'
-      >
-        <Login
-          login={login}
-          handleChangeFn={handleLoginChange}
-        />
-      </Modal>
       {Boolean(loggedIn) && <UserBadge user={state.user} />}
       {!Boolean(loggedIn) && <div className='notification is-info'>
         <button className='delete'></button>
