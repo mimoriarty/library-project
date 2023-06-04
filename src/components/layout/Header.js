@@ -43,6 +43,7 @@ export default function Header({ toggleFn }) {
         <div className='navbar-start'>
           <NavLink to='/home' className='navbar-item'>Home</NavLink>
           <NavLink to='/users' className='navbar-item'>Users</NavLink>
+          <NavLink to='/books' className='navbar-item'>Books</NavLink>
           <NavLink to='/about' className='navbar-item'>About</NavLink>
         </div>
 

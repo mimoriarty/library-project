@@ -1,0 +1,6 @@
+.notification {
+  display: none;
+}
+.notification.is-active {
+  display: block;
+}/*# sourceMappingURL=Notification.css.map */

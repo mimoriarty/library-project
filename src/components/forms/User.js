@@ -7,7 +7,7 @@ export default function User({ user = {}, handleChangeFn }) {
   return(
     <>
       <div className='mb-5 level-item' >
-        <figure class="image is-128x128">
+        <figure className="image is-128x128">
           <img
             className="is-rounded"
             src={user.avatar || 'https://bulma.io/images/placeholders/128x128.png'}
@@ -56,18 +56,32 @@ export default function User({ user = {}, handleChangeFn }) {
         </div>
       </div>
       {(loggedUser && loggedUser.type === LIBRARIAN) &&
-        <div className='field'>
+        <fieldset>
+          <div className='field'>
+            <label className='checkbox'>
+              <input
+                type='checkbox'
+                name='isActive'
+                checked={user.isActive}
+                value={user.isActive}
+                onChange={handleChangeFn}
+              />
+                &nbsp;Active
+            </label>
+          </div>
+          <div className='field'>
           <label className='checkbox'>
             <input
               type='checkbox'
-              name='isActive'
-              checked={user.isActive}
-              value={user.isActive}
+              name='hasPenaltyOngoing'
+              checked={user.hasPenaltyOngoing}
+              value={user.hasPenaltyOngoing}
               onChange={handleChangeFn}
             />
-              &nbsp;Active
+              &nbsp;Penalty active
           </label>
         </div>
+        </fieldset>
       }
     </>
   );

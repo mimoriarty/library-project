@@ -1,15 +1,24 @@
 export const TOGGLE_LOGIN_MODAL = 'APP/LOGIN/TOGGLE';
 export const TOGGLE_USER_MODAL = 'APP/USER/TOGGLE';
+export const TOGGLE_NOTIFICATION = 'APP/NOTIFICATION/TOGGLE';
 export const LOGIN_USER = 'APP/USER/LOGIN';
 export const LOAD_USERS = 'APP/USERS/LOAD';
+export const LOAD_USER = 'APP/USER/LOAD';
+export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
+
+/**
+ * notification types: danger, primary, warning
+ */
 
 export const initialState = {
-  loggedIn: null,
-  users: [],
+  loggedIn: null, // id of user logged in
+  users: [], // list of user objects
   library: [],
-  user: null,
-  loginModalOpen: false,
-  userModalOpen: false,
+  user: {}, // logged in object user data
+  notification: {}, // object notification data
+  loginModalOpen: false, // login modal status
+  userModalOpen: false, // user modal status
+  notificationOpen: false, //toggle notification
 };
 
 export const LibraryReducer = (state = initialState, action) => {
@@ -24,6 +33,12 @@ export const LibraryReducer = (state = initialState, action) => {
         ...state,
         userModalOpen: !state.userModalOpen,
       };
+    case TOGGLE_NOTIFICATION:
+      return {
+        ...state,
+        notificationOpen: !state.notificationOpen,
+        notification: action.notification,
+      };
     case LOGIN_USER:
       const user = state.users.find(({password, name}) =>
         name === action.user.name && password === action.user.password);
@@ -37,6 +52,16 @@ export const LibraryReducer = (state = initialState, action) => {
         ...state,
         users: action.users,
       };
+      case LOAD_USER:
+        return {
+          ...state,
+          user: action.user,
+        };
+      case LOAD_BOOKS:
+        return {
+          ...state,
+          books: action.books,
+        }
     default:
       break;
   }

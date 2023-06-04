@@ -1,0 +1,13 @@
+.table th {
+  text-align: center !important;
+  color: #6d6d6d !important;
+}
+.table tbody tr:hover {
+  background-color: #ebebeb;
+}
+.table tbody td {
+  vertical-align: middle;
+}
+.table tbody .tag {
+  border-radius: 9999px;
+}/*# sourceMappingURL=Table.css.map */

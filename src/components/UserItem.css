@@ -8,6 +8,9 @@
 .dropdown-menu .list-item:hover {
   background-color: #ebebeb;
 }
+.dropdown-menu .list-item-description {
+  max-width: none;
+}
 
 .list .list-item button.dropdown {
   background-color: #fff;
@@ -24,6 +27,9 @@
   align-items: flex-start;
 }
 
+.list-item-description {
+  max-width: 100px;
+}
 .list-item-description .tag.is-rounded.danger {
   background-color: tomato;
   color: #fff;

@@ -10,7 +10,7 @@
       "avatar": "https://images.unsplash.com/photo-1498529381350-89c2e7ccc430?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=f6143f1f2142185de1e1e3d955f729ec",
       "hasPenaltyOngoing": false,
       "isActive": true,
-      "penaltyExpirationDate": "2018-01-01T00:00:00",
+      "penaltyExpirationDate": null,
       "history": [
         {
           "id": 1,
@@ -45,21 +45,58 @@
       "avatar": "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=c3a31eeb7efb4d533647e3cad1de9257",
       "hasPenaltyOngoing": true,
       "isActive": false,
-      "penaltyExpirationDate": null,
+      "penaltyExpirationDate": "2024-01-01T00:00:00",
       "history": []
     }
   ],
   "library": [
     {
       "id": 1,
-      "name": "The ghost writter",
-      "shortDescription": "The ghost writter",
-      "pages": 445,
-      "author": "One Man",
+      "name": "Skipping Christmas",
+      "shortDescription": "The story focuses on how Luther and Nora Krank try to avoid the frenzy traditionally experienced during the Christmas holiday.",
+      "pages": 177,
+      "ISBN": "0-385-50583-3",
+      "author": "Grisham, John",
+      "publihser": "DoubleDay",
       "genres": [
-        "thriller"
+        "Comedy",
+        "Xmas"
       ],
-      "image": "https://images.unsplash.com/photo-1510304018184-111111111111?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+      "image": "https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg",
+      "isAvailable": false,
+      "borrowerId": 1,
+      "reservations": []
+    },
+    {
+      "id": 2,
+      "name": "The Enchanted April",
+      "shortDescription": "The novel follows four dissimilar women in the 1920s England who leave their rainy, grey environments to go on holiday in Italy.",
+      "pages": 232,
+      "ISBN": "",
+      "author": "Von Arnim, Elizabeth",
+      "publihser": "",
+      "genres": [
+        "Romantic",
+        "Female"
+      ],
+      "image": "https://www.gutenberg.org/cache/epub/16389/pg16389.cover.medium.jpg",
+      "isAvailable": false,
+      "borrowerId": 1,
+      "reservations": []
+    },
+    {
+      "id": 3,
+      "name": "The Hitchhiker's Guide to the Galaxy",
+      "shortDescription": "The Hitchhiker's Guide to the Galaxy is the first of six books in the Hitchhiker's Guide to the Galaxy comedy science fiction 'hexalogy' by Douglas Adams.",
+      "pages": 210,
+      "ISBN": "9781509808311",
+      "author": "Adams, Douglas",
+      "publihser": "Pan Books",
+      "genres": [
+        "ScyFy",
+        "Comedy"
+      ],
+      "image": "https://covers.openlibrary.org/b/isbn/9781509808311-M.jpg",
       "isAvailable": false,
       "borrowerId": 1,
       "reservations": []

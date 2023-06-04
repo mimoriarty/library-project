@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import { useLibrary } from './library/Library';
-import { loadUsers, loginUser, toggleLoginModal } from './reducers/libraryActions';
+import { 
+  loadBooks,
+  loadUsers,
+  loginUser,
+  toggleLoginModal,
+  toggleNotification,
+} from './reducers/libraryActions';
 import { getUsers } from './services/user';
-
+import { getBooks } from './services/library';
 import Home from './routes/Home';
 import Users from './routes/Users';
+import Books from './routes/Books';
 import About from './routes/About';
 import Header from './components/layout/Header';
 import Modal from './components/layout/Modal';
+import Notification from './components/layout/Noification';
 import Login from './components/forms/Login';
 
 import './App.css';
@@ -23,6 +30,9 @@ function App() {
   const [login, setLogin] = useState(initialState);
   const [state, dispatch] = useLibrary();
   const { loginModalOpen } = state;
+  const handleNotificationToggle = () => {
+    dispatch(toggleNotification({}))
+  };
   const handleToggleModal = () => {
     dispatch(toggleLoginModal());
   };
@@ -46,9 +56,16 @@ function App() {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    getBooks().then(res => {
+      dispatch(loadBooks(res));
+    });
+  }, [dispatch]);
+
   return (
     <div className='App'>
       <Header toggleFn={handleToggleModal} />
+      <Notification closeFn={handleNotificationToggle} />
       <Modal
         isOpen={loginModalOpen}
         toggleFn={handleToggleModal}
@@ -64,6 +81,7 @@ function App() {
       <Routes>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/users' element={<Users />}></Route>
+        <Route path='/books' element={<Books />}></Route>
         <Route path='/about' element={<About />}></Route>
       </Routes>
     </div>

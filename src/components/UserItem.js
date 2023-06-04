@@ -1,11 +1,18 @@
 import { useState } from 'react';
-import { userActions} from '../config/userActions';
+import { getUserActions} from '../config/userActions';
 import Dropdown from './layout/Dropdown';
+import { getRemainingDays } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH, faUser, faBook } from '@fortawesome/free-solid-svg-icons';
 import './UserItem.css';
 
-export default function UserItem({ user, toggleTypeFn, modifyModalFn }) {
+export default function UserItem({
+  user,
+  toggleTypeFn,
+  modifyModalFn,
+  togglePenaltyFn,
+  deleteUserFn,
+}) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userTypeIcon = user.type === 'librarian' ? faBook : faUser;
   const handleToggleDropdown = () => {
@@ -16,10 +23,10 @@ export default function UserItem({ user, toggleTypeFn, modifyModalFn }) {
     modifyModalFn();
   };
   const handleUserPenalty = () => {
-    debugger;
+    togglePenaltyFn();
   };
   const handleUserDelete = () => {
-    debugger;
+    deleteUserFn();
   };
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
   const dropdownHandlers = {
@@ -42,9 +49,11 @@ export default function UserItem({ user, toggleTypeFn, modifyModalFn }) {
       <div className='list-item-content'>
         <div className='list-item-title'>{user.firstName} {user.lastName}</div>
         <div className='list-item-description'>
-          <div class="tag is-rounded">@{user.name}</div>
-          {user.hasPenaltyOngoing && <div class="tag is-rounded danger ml-1">penalty</div>}
-          {!user.isActive && <div class="tag is-rounded warning ml-1">inactive</div>}
+          <div className="tag is-rounded">@{user.name}</div>
+          {user.hasPenaltyOngoing && <div className="tag is-rounded danger ml-1">
+            penalty: {getRemainingDays(user.penaltyExpirationDate)} left
+          </div>}
+          {!user.isActive && <div className="tag is-rounded warning ml-1">inactive</div>}
         </div>
       </div>
       <div className='list-item-controls'>
@@ -60,7 +69,7 @@ export default function UserItem({ user, toggleTypeFn, modifyModalFn }) {
             <span className='icon is-small dropdown-trigger' aria-controls='dropdown-menu'>
               <FontAwesomeIcon icon={faEllipsisH} />
             </span>
-            <Dropdown actions={userActions} handlers={dropdownHandlers} />
+            <Dropdown actions={getUserActions(user)} handlers={dropdownHandlers} />
           </button>
         </div>
       </div>
