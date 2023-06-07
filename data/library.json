@@ -10,15 +10,14 @@
       "avatar": "https://images.unsplash.com/photo-1498529381350-89c2e7ccc430?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=f6143f1f2142185de1e1e3d955f729ec",
       "hasPenaltyOngoing": false,
       "isActive": true,
+      "bookCount": 2,
       "penaltyExpirationDate": null,
       "history": [
         {
-          "id": 1,
-          "readed": "70",
-          "completed": false,
-          "borrowedDate": "2018-01-01T00:00:00",
-          "dueDate": "2018-01-01T00:00:00",
-          "returnedDate": "2018-01-01T00:00:00"
+          "id": 3,
+          "completed": true,
+          "borrowedDate": "2023-06-07T06:35:45.139Z",
+          "returnedDate": "2023-06-07T16:51:12.846Z"
         }
       ]
     },
@@ -32,6 +31,7 @@
       "avatar": "https://images.unsplash.com/photo-1544507888-56d73eb6046e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
       "hasPenaltyOngoing": false,
       "isActive": true,
+      "bookCount": 0,
       "penaltyExpirationDate": null,
       "history": []
     },
@@ -45,6 +45,7 @@
       "avatar": "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=c3a31eeb7efb4d533647e3cad1de9257",
       "hasPenaltyOngoing": true,
       "isActive": false,
+      "bookCount": 0,
       "penaltyExpirationDate": "2024-01-01T00:00:00",
       "history": []
     }
@@ -57,14 +58,14 @@
       "pages": 177,
       "ISBN": "0-385-50583-3",
       "author": "Grisham, John",
-      "publihser": "DoubleDay",
+      "publisher": "DoubleDay",
       "genres": [
         "Comedy",
         "Xmas"
       ],
       "image": "https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg",
       "isAvailable": false,
-      "borrowerId": 1,
+      "borrowerId": null,
       "reservations": []
     },
     {
@@ -74,14 +75,14 @@
       "pages": 232,
       "ISBN": "",
       "author": "Von Arnim, Elizabeth",
-      "publihser": "",
+      "publisher": "",
       "genres": [
         "Romantic",
         "Female"
       ],
       "image": "https://www.gutenberg.org/cache/epub/16389/pg16389.cover.medium.jpg",
-      "isAvailable": false,
-      "borrowerId": 1,
+      "isAvailable": true,
+      "borrowerId": "",
       "reservations": []
     },
     {
@@ -91,14 +92,14 @@
       "pages": 210,
       "ISBN": "9781509808311",
       "author": "Adams, Douglas",
-      "publihser": "Pan Books",
+      "publisher": "Pan Books",
       "genres": [
         "ScyFy",
         "Comedy"
       ],
       "image": "https://covers.openlibrary.org/b/isbn/9781509808311-M.jpg",
-      "isAvailable": false,
-      "borrowerId": 1,
+      "isAvailable": true,
+      "borrowerId": null,
       "reservations": []
     }
   ]

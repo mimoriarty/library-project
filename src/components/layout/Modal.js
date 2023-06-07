@@ -8,6 +8,7 @@ export default function Modal({
   title,
   okButton,
   koButton,
+  controls = true,
 }) {
   return (
     <div className={'modal is-flex-direction-row ' + (isOpen ? 'is-active is-clipped' : '')}>
@@ -20,10 +21,12 @@ export default function Modal({
         <section className='modal-card-body'>
           {children}
         </section>
-        <footer className='modal-card-foot column'>
-          <button className='button' onClick={toggleFn}>{koButton || 'Cancel'}</button>
-          <button className='button is-success' onClick={submitFn}>{okButton || 'Accept'}</button>
-        </footer>
+        {controls &&
+          <footer className='modal-card-foot column'>
+            <button className='button' onClick={toggleFn}>{koButton || 'Cancel'}</button>
+            <button className='button is-success' onClick={submitFn}>{okButton || 'Accept'}</button>
+          </footer>
+        }
       </div>
     </div>
   )

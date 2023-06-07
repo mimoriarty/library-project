@@ -1,11 +1,21 @@
+@media (max-width: 385px) {
+  .table tbody td {
+    min-width: unset !important;
+  }
+  .table .desktop {
+    display: none;
+  }
+}
 .table th {
   text-align: center !important;
   color: #6d6d6d !important;
 }
 .table tbody tr:hover {
   background-color: #ebebeb;
+  cursor: pointer;
 }
 .table tbody td {
+  min-width: 215px;
   vertical-align: middle;
 }
 .table tbody .tag {

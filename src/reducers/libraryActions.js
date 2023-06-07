@@ -4,7 +4,9 @@ import {
   LOAD_USER,
   TOGGLE_LOGIN_MODAL,
   TOGGLE_USER_MODAL,
+  TOGGLE_BOOK_MODAL,
   TOGGLE_NOTIFICATION,
+  TOGGLE_BOOK_DETAIL_MODAL,
   LOAD_BOOKS,
 } from './libraryReducer';
 
@@ -31,9 +33,17 @@ export const toggleUserModal = () => ({
   type: TOGGLE_USER_MODAL,
 });
 
+export const toggleBookModal = () => ({
+  type: TOGGLE_BOOK_MODAL,
+});
+
 export const toggleNotification = notification => ({
   type: TOGGLE_NOTIFICATION,
   notification,
+});
+
+export const toggleBookDetailModal = () => ({
+  type: TOGGLE_BOOK_DETAIL_MODAL,
 });
 
 export const loadBooks = books => ({

@@ -1,1 +1,1 @@
-{"version":3,"sources":["Table.sass","Table.css"],"names":[],"mappings":"AACE;EACE,6BAAA;EACA,yBAAA;ACAJ;ADIM;EACE,yBAAA;ACFR;ADII;EACE,sBAAA;ACFN;ADII;EACE,qBAAA;ACFN","file":"Table.css"}
+{"version":3,"sources":["Table.sass","Table.css"],"names":[],"mappings":"AAEA;EAGM;IACE,2BAAA;ECHN;EDKE;IACE,aAAA;ECHJ;AACF;ADOE;EACE,6BAAA;EACA,yBAAA;ACLJ;ADSM;EACE,yBAAA;EACA,eAAA;ACPR;ADSI;EACE,gBAAA;EACA,sBAAA;ACPN;ADSI;EACE,qBAAA;ACPN","file":"Table.css"}

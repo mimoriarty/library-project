@@ -7,6 +7,10 @@ const defaultNotification = {
   message: 'Just making u know about notifications system, <strong>keen an eye on us!!</strong>',
 }
 
+/**
+ * notification types: danger, primary, warning
+ */
+
 export default function Notification({ closeFn }) {
   const [state] = useLibrary();
   const { notification, notificationOpen } = state;

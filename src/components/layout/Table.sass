@@ -1,3 +1,16 @@
+$layout-breakpoint-small: 385px
+
+@media (max-width: $layout-breakpoint-small)
+  .table
+    tbody
+      td
+        min-width: unset !important
+
+    .desktop
+      display: none
+
+
+
 .table
   th
     text-align: center !important
@@ -7,8 +20,10 @@
     tr
       &:hover
         background-color: #ebebeb
+        cursor: pointer
 
     td
+      min-width: 215px
       vertical-align: middle
 
     .tag
