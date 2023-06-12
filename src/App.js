@@ -10,7 +10,7 @@ import {
   toggleNotification,
 } from './reducers/libraryActions';
 import { getUsers } from './services/user';
-import { getBooks } from './services/library';
+import { getBooks, saveBook } from './services/library';
 import Home from './routes/Home';
 import Users from './routes/Users';
 import Books from './routes/Books';
@@ -30,7 +30,7 @@ const initialState = {
 function App() {
   const [login, setLogin] = useState(initialState);
   const [state, dispatch] = useLibrary();
-  const { loginModalOpen, selectedCat } = state;
+  const { loginModalOpen, selectedCat, reloadBooks } = state;
   const handleNotificationToggle = () => {
     dispatch(toggleNotification({}))
   };
@@ -62,7 +62,7 @@ function App() {
     getBooks().then(res => {
       dispatch(loadBooks(res));
     });
-  }, [dispatch]);
+  }, [dispatch, reloadBooks]);
 
   return (
     <div className='App'>

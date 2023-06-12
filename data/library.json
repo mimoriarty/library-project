@@ -101,6 +101,34 @@
       "isAvailable": true,
       "borrowerId": null,
       "reservations": []
+    },
+    {
+      "name": "The 48 laws of power",
+      "shortDescription": "Amoral, cunning, ruthless, and instructive, this multi-million-copy New York Times bestseller is the definitive manual for anyone interested in gaining, observing, or defending against ultimate control – from the author of The Laws of Human Nature.",
+      "pages": "480",
+      "ISBN": "0670881465",
+      "author": "Greene, Robert",
+      "publisher": "Penguin Books",
+      "genres": [
+        "AutoHelp"
+      ],
+      "image": "https://covers.openlibrary.org/b/id/9573841-L.jpg",
+      "isAvailable": true,
+      "id": 4
+    },
+    {
+      "name": "Zen and the Art of Motorcycle Maintenance",
+      "shortDescription": "The book is a fictionalized autobiography of a 17-day journey that Pirsig made on his Honda CB77 motorcycle from Minnesota to Northern California along with his son Chris in 1968.",
+      "pages": "418",
+      "ISBN": "0-688-00230-7",
+      "author": "Robert M. Pirsig",
+      "publisher": "William Morrow & Co",
+      "genres": [
+        "Drama"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Zen_motorcycle.jpg/220px-Zen_motorcycle.jpg",
+      "isAvailable": true,
+      "id": 5
     }
   ],
   "returnRequests": [

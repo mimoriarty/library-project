@@ -11,6 +11,7 @@ export const SCYFY = 'SciFy';
 export const ROMANTIC = 'Romantic';
 export const XMAS = 'Xmas';
 export const FEMALE = 'Female';
+export const AUTOHELP = 'AutoHelp';
 export const bookTags = {
   [COMEDY]: {
     style: 'is-info',
@@ -32,6 +33,9 @@ export const bookTags = {
   },
   [FEMALE]: {
     style: 'is-primary is-light',
+  },
+  [AUTOHELP]: {
+    style: 'is-success is-light',
   },
 };
 export const bookListCat = [

@@ -10,6 +10,7 @@ import {
   LOAD_BOOKS,
   CHANGE_LIST_CAT,
   SEARCH_BOOKS,
+  RELOAD_BOOKS,
 } from './libraryReducer';
 
 export const loginUser = user => ({
@@ -61,4 +62,8 @@ export const changeListCat = id => ({
 export const searchBooks = str => ({
   type: SEARCH_BOOKS,
   str,
+});
+
+export const reloadBooks = () => ({
+  type: RELOAD_BOOKS,
 });

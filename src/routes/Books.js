@@ -9,14 +9,15 @@ import {
   loadBooks,
   changeListCat,
   searchBooks,
+  reloadBooks,
 } from '../reducers/libraryActions';
 import { updateUser } from '../services/user';
-import { updateBook, deleteBook } from '../services/library';
+import {updateBook, deleteBook, saveBook } from '../services/library';
 import { findBy } from '../utils/utils';
 import Table from '../components/layout/Table';
 import Modal from '../components/layout/Modal';
 import BookCard from '../components/BookCard';
-import { ALLOWED_BORROW_BOOKS, bookListCat, bookListHeaders } from '../constants';
+import { ALLOWED_BORROW_BOOKS, LIBRARIAN, bookListCat, bookListHeaders } from '../constants';
 import Book from '../components/forms/Book';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -158,8 +159,9 @@ export default function Books() {
     deleteBook(id);
   };
   const handleSubmitModalBook = () => {
+    let newBooksState;
     if (formValues.id) {
-      const newBooksState = books.map(book =>
+      newBooksState = books.map(book =>
         book.id === formValues.id ? { ...book, ...formValues } : book);
       const newBookState = books.find(book => book.id === formValues.id);
 
@@ -168,7 +170,10 @@ export default function Books() {
       dispatch(loadBooks(newBooksState));
       updateBook(newBookState);
     } else {
-      // TODO: add book implementation
+      saveBook(formValues);
+      handleToggleBookModal();
+      setFormValues(initialValues);
+      dispatch(reloadBooks());
     }
   };
   const handleChangeCat = id => {
@@ -184,7 +189,7 @@ export default function Books() {
     };
 
     dispatch(searchBooks(searchValue));
-  }
+  };
 
   return (
     <>
@@ -209,7 +214,27 @@ export default function Books() {
       >
         <BookCard book={bookDetail} />
       </Modal>
-      <nav className='panel'>
+      {user?.id === LIBRARIAN && <div className='card'>
+        <div className='card-header'>
+        <p className='card-header-title'>
+          Add new Book
+        </p>
+        </div>
+        <div className='card-content'>
+          <div className='content'>
+            Add a new book to the database, check beforehand that the same version of the book does not exist to prevent same version duplicates.
+          </div>
+          <div className='buttons level-item'>
+            <button
+              className='button is-success'
+              onClick={handleToggleBookModal}
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>}
+      <nav className='panel mt-5'>
         <p className='panel-header'>Books list</p>
         <div className='is-flex is-flex-direction-column panel-block'>
           <p className='control has-icons-left'>

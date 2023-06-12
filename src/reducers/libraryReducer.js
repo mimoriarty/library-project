@@ -12,6 +12,7 @@ export const LOAD_USER = 'APP/USER/LOAD';
 export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
 export const CHANGE_LIST_CAT = 'APP/BOOKS/LIST/FILTER';
 export const SEARCH_BOOKS = 'APP/BOOKS/SEARCH';
+export const RELOAD_BOOKS = 'APP/BOOKS/RELOAD';
 
 export const initialState = {
 loggedIn: null, // id of user logged in
@@ -25,7 +26,8 @@ loggedIn: null, // id of user logged in
   notificationOpen: false, //toggle notification
   bookCardOpen: false, // toggle book card detail modal
   selectedCat: bookListCat[0].id, // selected book list filter
-  filteredBooks: [], // book list filter
+  filteredBooks: [], // book list filter,
+  reloadBooks: false, // reload book list
 };
 
 export const LibraryReducer = (state = initialState, action) => {
@@ -89,6 +91,11 @@ export const LibraryReducer = (state = initialState, action) => {
         return {
           ...state,
           filteredBooks: getSearchedList(state.books, action.str),
+        }
+      case RELOAD_BOOKS:
+        return {
+          ...state,
+          reloadBooks: !state.reloadBooks,
         }
     default:
       break;

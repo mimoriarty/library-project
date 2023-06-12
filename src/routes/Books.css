@@ -7,4 +7,8 @@ nav.panel .panel-tabs span.is-active {
 }
 nav.panel .panel-tabs span:hover {
   font-weight: bold;
+}
+
+.card {
+  background-color: #d1f5e5 !important;
 }/*# sourceMappingURL=Books.css.map */
