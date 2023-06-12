@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useLibrary } from './library/Library';
 import { 
+  changeListCat,
   loadBooks,
   loadUsers,
   loginUser,
@@ -29,7 +30,7 @@ const initialState = {
 function App() {
   const [login, setLogin] = useState(initialState);
   const [state, dispatch] = useLibrary();
-  const { loginModalOpen } = state;
+  const { loginModalOpen, selectedCat } = state;
   const handleNotificationToggle = () => {
     dispatch(toggleNotification({}))
   };
@@ -53,8 +54,9 @@ function App() {
   useEffect(() => {
     getUsers().then(res => {
       dispatch(loadUsers(res));
+      dispatch(changeListCat(selectedCat));
     });
-  }, [dispatch]);
+  }, [dispatch, selectedCat]);
 
   useEffect(() => {
     getBooks().then(res => {

@@ -75,7 +75,7 @@ export default function Users() {
   };
   const handleFormChange = ({ target }) => {
     const { type, value, name, checked } = target;
-    const val =  type === "checkbox" ? Boolean(checked) : value;
+    const val =  type === 'checkbox' ? Boolean(checked) : value;
 
     setEditForm({
       ...editForm,

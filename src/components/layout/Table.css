@@ -6,9 +6,12 @@
     display: none;
   }
 }
+.table {
+  width: -webkit-fill-available;
+}
 .table th {
-  text-align: center !important;
   color: #6d6d6d !important;
+  text-align: center !important;
 }
 .table tbody tr:hover {
   background-color: #ebebeb;

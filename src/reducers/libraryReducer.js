@@ -1,3 +1,6 @@
+import { getFilteredBooks } from '../utils/utils';
+import { bookListCat } from '../constants';
+
 export const TOGGLE_LOGIN_MODAL = 'APP/LOGIN/TOGGLE';
 export const TOGGLE_USER_MODAL = 'APP/USER/TOGGLE';
 export const TOGGLE_BOOK_MODAL = 'APP/BOOK/TOGGLE';
@@ -7,9 +10,10 @@ export const LOGIN_USER = 'APP/USER/LOGIN';
 export const LOAD_USERS = 'APP/USERS/LOAD';
 export const LOAD_USER = 'APP/USER/LOAD';
 export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
+export const CHANGE_LIST_CAT = 'APP/BOOKS/LIST/FILTER';
 
 export const initialState = {
-  loggedIn: null, // id of user logged in
+loggedIn: null, // id of user logged in
   users: [], // list of user objects
   library: [],
   user: {}, // logged in object user data
@@ -19,6 +23,8 @@ export const initialState = {
   bookModalOpen: false, // book modal status
   notificationOpen: false, //toggle notification
   bookCardOpen: false, // toggle book card detail modal
+  selectedCat: bookListCat[0].id, // selected book list filter
+  filteredBooks: [], // book list filter
 };
 
 export const LibraryReducer = (state = initialState, action) => {
@@ -71,6 +77,12 @@ export const LibraryReducer = (state = initialState, action) => {
         return {
           ...state,
           books: action.books,
+        }
+      case CHANGE_LIST_CAT:
+        return {
+          ...state,
+          selectedCat: action.id,
+          filteredBooks: getFilteredBooks(state.books, action.id)
         }
     default:
       break;

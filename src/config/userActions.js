@@ -1,4 +1,4 @@
-import { PENALTY_SPAN, LIBRARIAN } from "../constants";
+import { PENALTY_SPAN, LIBRARIAN } from '../constants';
 
 const userActions = [
   {

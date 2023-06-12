@@ -4,6 +4,7 @@ export default function Modal({
   isOpen,
   toggleFn,
   submitFn,
+  deleteFn,
   children,
   title,
   okButton,
@@ -23,7 +24,7 @@ export default function Modal({
         </section>
         {controls &&
           <footer className='modal-card-foot column'>
-            <button className='button' onClick={toggleFn}>{koButton || 'Cancel'}</button>
+            <button className='button' onClick={deleteFn || toggleFn}>{deleteFn ? 'Delete' : (koButton || 'Cancel')}</button>
             <button className='button is-success' onClick={submitFn}>{okButton || 'Accept'}</button>
           </footer>
         }

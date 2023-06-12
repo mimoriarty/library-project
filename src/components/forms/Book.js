@@ -8,7 +8,7 @@ export default function Book({ book, handleChangeFn }) {
   return(
     <>
       <div className='cover-input'>
-        <figure class='image'>
+        <figure className='image'>
           <img
             src={book.image || 'https://bulma.io/images/placeholders/480x800.png'}
             alt='book cover'

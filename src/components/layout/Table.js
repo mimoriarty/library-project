@@ -37,7 +37,7 @@ export default function Table({
 
   return (
     <div className='container'>
-      <table className="table is-narrow">
+      <table className='table is-narrow'>
         <thead>
           <tr>
             {headers.map((head, i) => <th key={i + head.name} className={head.class}>

@@ -27,3 +27,7 @@ export const getBorrowLimitDate = () => {
   penaltyDate.add(ALLOWED_BORROW_SPAN, 'days');
   return penaltyDate.format();
 };
+
+export const getFilteredBooks = (list, id) => id === 'all'
+  ? list
+  : list.filter(book => Boolean(book[id]));

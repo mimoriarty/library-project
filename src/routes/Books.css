@@ -1,0 +1,10 @@
+nav.panel .panel-tabs span {
+  padding: 0.5em;
+}
+nav.panel .panel-tabs span.is-active {
+  color: #23aeff;
+  font-weight: bolder;
+}
+nav.panel .panel-tabs span:hover {
+  font-weight: bold;
+}/*# sourceMappingURL=Books.css.map */

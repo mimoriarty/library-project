@@ -8,6 +8,7 @@ import {
   TOGGLE_NOTIFICATION,
   TOGGLE_BOOK_DETAIL_MODAL,
   LOAD_BOOKS,
+  CHANGE_LIST_CAT,
 } from './libraryReducer';
 
 export const loginUser = user => ({
@@ -49,4 +50,9 @@ export const toggleBookDetailModal = () => ({
 export const loadBooks = books => ({
   type: LOAD_BOOKS,
   books,
+});
+
+export const changeListCat = id => ({
+  type: CHANGE_LIST_CAT,
+  id,
 });

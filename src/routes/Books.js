@@ -7,39 +7,45 @@ import {
   loadUser,
   loadUsers,
   loadBooks,
+  changeListCat,
 } from '../reducers/libraryActions';
 import { updateUser } from '../services/user';
-import { updateBook } from '../services/library';
+import { updateBook, deleteBook } from '../services/library';
 import { findBy } from '../utils/utils';
 import Table from '../components/layout/Table';
 import Modal from '../components/layout/Modal';
 import BookCard from '../components/BookCard';
-import { ALLOWED_BORROW_BOOKS } from '../constants';
+import { ALLOWED_BORROW_BOOKS, bookListCat, bookListHeaders } from '../constants';
 import Book from '../components/forms/Book';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './Books.css';
 
-const headers = [
-  { name: 'Title' },
-  { name: 'Author', abbr: 'Aut' },
-  { name: 'Genre', abbr: 'Gnr'},
-  { name: 'Pages', abbr: 'Pg', class: 'desktop'},
-  { name: 'Publisher' ,abbr: 'Pbs', class: 'desktop'},
-  { name: 'Availability', abbr: 'Av'},
-];
 const initialValues = {
   name: '',
   shortDescription: '',
-  pages: null,
+  pages: '',
   ISBN: '',
   author: '',
   publisher: '',
   genres: [],
   image: '',
   isAvailable: false,
-}
+};
+const getMultiSelectValues = (values, value) =>
+  values.includes(value) ? values.filter(val => val !== value) : [...values, value];
 
 export default function Books() {
   const [state, dispatch] = useLibrary();
-  const { books, bookCardOpen, bookModalOpen, user, users } = state;
+  const {
+    books,
+    bookCardOpen,
+    bookModalOpen,
+    user,
+    users,
+    selectedCat,
+    filteredBooks
+  } = state;
   const [bookDetail, setBookDetail] = useState((books || [])[0]);
   const [formValues, setFormValues] = useState(initialValues);
   const handleToggleBookCardModal = bookId => {
@@ -56,7 +62,7 @@ export default function Books() {
       bookCount: user.bookCount + 1,
       history: user.history.map(his => {
         if (his.id !== book.id) return his;
-  
+
         return {
           ...his,
           returnedDate: new Date().toISOString(),
@@ -128,33 +134,93 @@ export default function Books() {
     setFormValues(book);
     handleToggleBookModal();
   };
+  const handleFormChange = ({ target }) => {
+    const { type, value, name, checked } = target;
+    const val = type === 'checkbox'
+      ? Boolean(checked)
+      : type === 'select-multiple'
+        ? getMultiSelectValues(formValues.genres, value)
+        : value;
 
-  return(
+    setFormValues({
+      ...formValues,
+      [name]: val,
+    });
+  };
+  const handleRemoveBook = id => {
+    const newBooksState = books.filter(book => book.id !== id);
+
+    handleToggleBookModal();
+    setFormValues(initialValues);
+    dispatch(loadBooks(newBooksState));
+    deleteBook(id);
+  };
+  const handleSubmitModalBook = () => {
+    if (formValues.id) {
+      const newBooksState = books.map(book =>
+        book.id === formValues.id ? { ...book, ...formValues } : book);
+      const newBookState = books.find(book => book.id === formValues.id);
+
+      handleToggleBookModal();
+      setFormValues(initialValues);
+      dispatch(loadBooks(newBooksState));
+      updateBook(newBookState);
+    } else {
+      // TODO: add book implementation
+    }
+  };
+  const handleChangeCat = id => {
+    dispatch(changeListCat(id))
+  };
+
+  return (
     <>
-    <Modal
+      <Modal
         isOpen={bookModalOpen}
         toggleFn={handleToggleBookModal}
-        submitFn={() => null}
+        submitFn={handleSubmitModalBook}
+        deleteFn={handleRemoveBook}
         title='Book'
         controls={true}
         okButton='Save'
       >
-        <Book book={formValues} />
+        <Book book={formValues} handleChangeFn={handleFormChange} />
       </Modal>
       <Modal
         isOpen={bookCardOpen}
         toggleFn={handleToggleBookCardModal}
-        submitFn={() => null}
+        submitFn={() => null} // controls is disabled, no need to implement a submit fn
         title='Books details'
         controls={false}
         okButton='Save'
       >
         <BookCard book={bookDetail} />
       </Modal>
-      <h2 className='title is-4'>Books list</h2>
+      <nav className='panel'>
+        <p className='panel-header'>Books list</p>
+        <div className='panel-block'>
+          <p className='control has-icons-left'>
+            <input className='input' type='text' placeholder='Search' />
+            <span className='icon is-left'>
+              <FontAwesomeIcon icon={faSearch} className='small' />
+            </span>
+          </p>
+        </div>
+        <p className='panel-tabs'>
+          {bookListCat.map((cat, i) =>
+            <span
+              key={i + '-' + cat.id}
+              className={selectedCat === cat.id ? 'is-active' : ''}
+              onClick={() => handleChangeCat(cat.id)}
+            >
+              {cat.id}
+            </span>
+          )}
+        </p>
+      </nav>
       <Table
-        list={books}
-        headers={headers}
+        list={filteredBooks}
+        headers={bookListHeaders}
         toggleDetailFn={handleToggleBookCardModal}
         user={user}
         borrowFn={handleBorrowBook}

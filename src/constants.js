@@ -33,4 +33,17 @@ export const bookTags = {
   [FEMALE]: {
     style: 'is-primary is-light',
   },
-}
+};
+export const bookListCat = [
+  { id: 'all', action: 'all' },
+  { id: 'isAvailable', action: 'available' },
+  { id: 'borrowedId', action: 'borrowed' },
+];
+export const bookListHeaders = [
+  { name: 'Title' },
+  { name: 'Author', abbr: 'Aut' },
+  { name: 'Genre', abbr: 'Gnr' },
+  { name: 'Pages', abbr: 'Pg', class: 'desktop' },
+  { name: 'Publisher', abbr: 'Pbs', class: 'desktop' },
+  { name: 'Availability', abbr: 'Av' },
+];

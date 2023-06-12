@@ -7,9 +7,9 @@ export default function User({ user = {}, handleChangeFn }) {
   return(
     <>
       <div className='mb-5 level-item' >
-        <figure className="image is-128x128">
+        <figure className='image is-128x128'>
           <img
-            className="is-rounded"
+            className='is-rounded'
             src={user.avatar || 'https://bulma.io/images/placeholders/128x128.png'}
             alt='user avatar'
           />
