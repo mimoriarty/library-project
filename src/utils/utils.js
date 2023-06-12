@@ -28,6 +28,13 @@ export const getBorrowLimitDate = () => {
   return penaltyDate.format();
 };
 
-export const getFilteredBooks = (list, id) => id === 'all'
+export const getFilteredList = (list, id) => id === 'all'
   ? list
   : list.filter(book => Boolean(book[id]));
+
+export const getSearchedList = (list, str) => list.reduce((acc, act) => {
+  const { name, author, publisher, genres } = act;
+
+  return [name, author, publisher, ...genres].some(key => key.toLowerCase().includes(str))
+    ? [...acc, act] : acc;
+}, []);

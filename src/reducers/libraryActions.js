@@ -9,6 +9,7 @@ import {
   TOGGLE_BOOK_DETAIL_MODAL,
   LOAD_BOOKS,
   CHANGE_LIST_CAT,
+  SEARCH_BOOKS,
 } from './libraryReducer';
 
 export const loginUser = user => ({
@@ -55,4 +56,9 @@ export const loadBooks = books => ({
 export const changeListCat = id => ({
   type: CHANGE_LIST_CAT,
   id,
+});
+
+export const searchBooks = str => ({
+  type: SEARCH_BOOKS,
+  str,
 });

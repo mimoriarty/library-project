@@ -1,4 +1,4 @@
-import { getFilteredBooks } from '../utils/utils';
+import { getFilteredList, getSearchedList } from '../utils/utils';
 import { bookListCat } from '../constants';
 
 export const TOGGLE_LOGIN_MODAL = 'APP/LOGIN/TOGGLE';
@@ -11,6 +11,7 @@ export const LOAD_USERS = 'APP/USERS/LOAD';
 export const LOAD_USER = 'APP/USER/LOAD';
 export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
 export const CHANGE_LIST_CAT = 'APP/BOOKS/LIST/FILTER';
+export const SEARCH_BOOKS = 'APP/BOOKS/SEARCH';
 
 export const initialState = {
 loggedIn: null, // id of user logged in
@@ -82,7 +83,12 @@ export const LibraryReducer = (state = initialState, action) => {
         return {
           ...state,
           selectedCat: action.id,
-          filteredBooks: getFilteredBooks(state.books, action.id)
+          filteredBooks: getFilteredList(state.books, action.id),
+        }
+      case SEARCH_BOOKS:
+        return {
+          ...state,
+          filteredBooks: getSearchedList(state.books, action.str),
         }
     default:
       break;

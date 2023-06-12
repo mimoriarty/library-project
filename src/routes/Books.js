@@ -8,6 +8,7 @@ import {
   loadUsers,
   loadBooks,
   changeListCat,
+  searchBooks,
 } from '../reducers/libraryActions';
 import { updateUser } from '../services/user';
 import { updateBook, deleteBook } from '../services/library';
@@ -48,6 +49,7 @@ export default function Books() {
   } = state;
   const [bookDetail, setBookDetail] = useState((books || [])[0]);
   const [formValues, setFormValues] = useState(initialValues);
+  const [searchValue, setSearchValue] = useState('');
   const handleToggleBookCardModal = bookId => {
     if (bookId) setBookDetail(findBy(books, 'id', bookId));
     dispatch(toggleBookDetailModal());
@@ -172,6 +174,17 @@ export default function Books() {
   const handleChangeCat = id => {
     dispatch(changeListCat(id))
   };
+  const handleBookSearch = e => {
+    const val = e.target.value;
+    setSearchValue(val);
+
+    if (!searchValue || searchValue.length < 3) {
+      dispatch(changeListCat('all'));
+      dispatch(loadBooks(books));
+    };
+
+    dispatch(searchBooks(searchValue));
+  }
 
   return (
     <>
@@ -198,13 +211,20 @@ export default function Books() {
       </Modal>
       <nav className='panel'>
         <p className='panel-header'>Books list</p>
-        <div className='panel-block'>
+        <div className='is-flex is-flex-direction-column panel-block'>
           <p className='control has-icons-left'>
-            <input className='input' type='text' placeholder='Search' />
+            <input
+              className='input'
+              type='text'
+              placeholder='Search'
+              value={searchValue}
+              onChange={handleBookSearch}
+            />
             <span className='icon is-left'>
               <FontAwesomeIcon icon={faSearch} className='small' />
             </span>
           </p>
+          <p className='help is-info is-align-self-flex-start'>You need to write at leas 3 characters</p>
         </div>
         <p className='panel-tabs'>
           {bookListCat.map((cat, i) =>

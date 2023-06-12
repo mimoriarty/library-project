@@ -102,5 +102,13 @@
       "borrowerId": null,
       "reservations": []
     }
+  ],
+  "returnRequests": [
+    {
+      "bookId": 1,
+      "userId": 1,
+      "requestDate": "2023-01-01T00:00:00",
+      "requestComplete": false
+    }
   ]
 }
