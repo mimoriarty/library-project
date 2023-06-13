@@ -48,6 +48,7 @@ export default function Books() {
     selectedCat,
     filteredBooks
   } = state;
+  const isLibrarian = user?.id === LIBRARIAN;
   const [bookDetail, setBookDetail] = useState((books || [])[0]);
   const [formValues, setFormValues] = useState(initialValues);
   const [searchValue, setSearchValue] = useState('');
@@ -214,7 +215,7 @@ export default function Books() {
       >
         <BookCard book={bookDetail} />
       </Modal>
-      {user?.id === LIBRARIAN && <div className='card'>
+      {isLibrarian && <div className='card'>
         <div className='card-header'>
         <p className='card-header-title'>
           Add new Book
@@ -251,7 +252,7 @@ export default function Books() {
           </p>
           <p className='help is-info is-align-self-flex-start'>You need to write at leas 3 characters</p>
         </div>
-        <p className='panel-tabs'>
+        {isLibrarian && <p className='panel-tabs'>
           {bookListCat.map((cat, i) =>
             <span
               key={i + '-' + cat.id}
@@ -261,8 +262,11 @@ export default function Books() {
               {cat.id}
             </span>
           )}
-        </p>
+        </p>}
       </nav>
+      {books.length === 0 && <p>
+        Sorry our shelves are empty try adding some books to the list!!
+      </p>}
       <Table
         list={filteredBooks}
         headers={bookListHeaders}

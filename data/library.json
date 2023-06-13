@@ -12,14 +12,28 @@
       "isActive": true,
       "bookCount": 2,
       "penaltyExpirationDate": null,
+      "createDate": "2022-12-05T06:35:45.139Z",
       "history": [
         {
           "id": 3,
           "completed": true,
+          "borrowedDate": "2022-12-07T06:35:45.139Z",
+          "returnedDate": "2022-12-17T16:51:12.846Z"
+        },
+        {
+          "id": 2,
+          "completed": false,
           "borrowedDate": "2023-06-07T06:35:45.139Z",
-          "returnedDate": "2023-06-07T16:51:12.846Z"
+          "returnedDate": ""
+        },
+        {
+          "id": 3,
+          "completed": false,
+          "borrowedDate": "2023-06-13T20:43:16.855Z",
+          "returnedDate": null
         }
-      ]
+      ],
+      "email": "moirabax@mymail.com"
     },
     {
       "id": 2,
@@ -30,6 +44,7 @@
       "password": "k35",
       "avatar": "https://images.unsplash.com/photo-1544507888-56d73eb6046e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
       "hasPenaltyOngoing": false,
+      "createDate": "2021-01-21T06:35:45.139Z",
       "isActive": true,
       "bookCount": 0,
       "penaltyExpirationDate": null,
@@ -44,10 +59,27 @@
       "password": "j40",
       "avatar": "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=c3a31eeb7efb4d533647e3cad1de9257",
       "hasPenaltyOngoing": true,
+      "createDate": "2022-07-12T06:35:45.139Z",
       "isActive": false,
       "bookCount": 0,
       "penaltyExpirationDate": "2024-01-01T00:00:00",
       "history": []
+    },
+    {
+      "type": "member",
+      "firstName": "Franz",
+      "lastName": "Dessantre",
+      "name": "fran",
+      "password": "fran",
+      "avatar": "https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png",
+      "hasPenaltyOngoing": false,
+      "createDate": "2022-12-05T06:35:45.139Z",
+      "isActive": false,
+      "bookCount": 0,
+      "penaltyExpirationDate": "",
+      "history": [],
+      "email": "dessantrefranz@mymail.com",
+      "id": 4
     }
   ],
   "library": [
@@ -99,7 +131,7 @@
       ],
       "image": "https://covers.openlibrary.org/b/isbn/9781509808311-M.jpg",
       "isAvailable": true,
-      "borrowerId": null,
+      "borrowerId": 1,
       "reservations": []
     },
     {

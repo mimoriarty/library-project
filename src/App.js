@@ -10,7 +10,7 @@ import {
   toggleNotification,
 } from './reducers/libraryActions';
 import { getUsers } from './services/user';
-import { getBooks, saveBook } from './services/library';
+import { getBooks } from './services/library';
 import Home from './routes/Home';
 import Users from './routes/Users';
 import Books from './routes/Books';
@@ -21,6 +21,7 @@ import Notification from './components/layout/Noification';
 import Login from './components/forms/Login';
 
 import './App.css';
+import SignUp from './routes/SignUp';
 
 const initialState = {
   name: '',
@@ -30,7 +31,7 @@ const initialState = {
 function App() {
   const [login, setLogin] = useState(initialState);
   const [state, dispatch] = useLibrary();
-  const { loginModalOpen, selectedCat, reloadBooks } = state;
+  const { loginModalOpen, selectedCat, reloadBooks, reloadUsers } = state;
   const handleNotificationToggle = () => {
     dispatch(toggleNotification({}))
   };
@@ -56,7 +57,7 @@ function App() {
       dispatch(loadUsers(res));
       dispatch(changeListCat(selectedCat));
     });
-  }, [dispatch, selectedCat]);
+  }, [dispatch, selectedCat, reloadUsers]);
 
   useEffect(() => {
     getBooks().then(res => {
@@ -81,6 +82,7 @@ function App() {
         />
       </Modal>
       <Routes>
+        <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/users' element={<Users />}></Route>
         <Route path='/books' element={<Books />}></Route>

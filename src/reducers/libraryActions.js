@@ -1,5 +1,6 @@
 import {
   LOGIN_USER,
+  LOGOUT_USER,
   LOAD_USERS,
   LOAD_USER,
   TOGGLE_LOGIN_MODAL,
@@ -11,11 +12,16 @@ import {
   CHANGE_LIST_CAT,
   SEARCH_BOOKS,
   RELOAD_BOOKS,
+  RELOAD_USERS,
 } from './libraryReducer';
 
 export const loginUser = user => ({
   type: LOGIN_USER,
   user,
+});
+
+export const logOutUser = () => ({
+  type: LOGOUT_USER
 });
 
 export const loadUsers = users => ({
@@ -66,4 +72,8 @@ export const searchBooks = str => ({
 
 export const reloadBooks = () => ({
   type: RELOAD_BOOKS,
+});
+
+export const reloadUsers = () => ({
+  type: RELOAD_USERS,
 });

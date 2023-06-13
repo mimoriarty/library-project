@@ -3,7 +3,7 @@ import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import './BookCard.css';
 
 export default function BookCard({ book = {} }) {
-  const available = book.isAvailable && Boolean(book.borrowerId);
+  const available = book.isAvailable && !Boolean(book.borrowerId);
   const statusIcon = available ? faCheckCircle : faCircleXmark
 
   return (

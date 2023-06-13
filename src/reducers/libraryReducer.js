@@ -5,14 +5,16 @@ export const TOGGLE_LOGIN_MODAL = 'APP/LOGIN/TOGGLE';
 export const TOGGLE_USER_MODAL = 'APP/USER/TOGGLE';
 export const TOGGLE_BOOK_MODAL = 'APP/BOOK/TOGGLE';
 export const TOGGLE_NOTIFICATION = 'APP/NOTIFICATION/TOGGLE';
-export const TOGGLE_BOOK_DETAIL_MODAL = 'APP/BOOKS/DETAIL/TOGGLE';
 export const LOGIN_USER = 'APP/USER/LOGIN';
-export const LOAD_USERS = 'APP/USERS/LOAD';
+export const LOGOUT_USER = 'APP/USER/LOGOUT';
 export const LOAD_USER = 'APP/USER/LOAD';
-export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
+export const LOAD_USERS = 'APP/USERS/LOAD';
+export const RELOAD_USERS = 'APP/USERS/RELOAD';
 export const CHANGE_LIST_CAT = 'APP/BOOKS/LIST/FILTER';
+export const LOAD_BOOKS = 'APP/BOOKS/LOAD';
 export const SEARCH_BOOKS = 'APP/BOOKS/SEARCH';
 export const RELOAD_BOOKS = 'APP/BOOKS/RELOAD';
+export const TOGGLE_BOOK_DETAIL_MODAL = 'APP/BOOKS/DETAIL/TOGGLE';
 
 export const initialState = {
 loggedIn: null, // id of user logged in
@@ -28,6 +30,7 @@ loggedIn: null, // id of user logged in
   selectedCat: bookListCat[0].id, // selected book list filter
   filteredBooks: [], // book list filter,
   reloadBooks: false, // reload book list
+  reloadUsers: false, // reload users list
 };
 
 export const LibraryReducer = (state = initialState, action) => {
@@ -66,6 +69,12 @@ export const LibraryReducer = (state = initialState, action) => {
         loggedIn: user?.id || null,
         user,
       };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: {},
+        loggedIn: false,
+      }
     case LOAD_USERS:
       return {
         ...state,
@@ -97,6 +106,11 @@ export const LibraryReducer = (state = initialState, action) => {
           ...state,
           reloadBooks: !state.reloadBooks,
         }
+        case RELOAD_USERS:
+          return {
+            ...state,
+            reloadUsers: !state.reloadUsers,
+          }
     default:
       break;
   }

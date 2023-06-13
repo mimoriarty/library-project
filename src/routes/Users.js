@@ -8,6 +8,7 @@ import {
 } from '../reducers/libraryActions';
 import { updateUser, deleteUser } from '../services/user';
 import UserItem from '../components/UserItem';
+import LoginCard from '../components/LoginCard';
 import Modal from '../components/layout/Modal';
 import User from '../components/forms/User';
 import { findBy, getPenaltyDate } from '../utils/utils';
@@ -82,21 +83,30 @@ export default function Users() {
       [name]: val,
     });
   };
+  const handleEditSubmit = () => {
+    const newUsersState = users.map(user => user.id === editForm.id ? editForm : user);
+    
+    handleToggleModal(userModalOpen)
+    dispatch(loadUser(editForm));
+    dispatch(loadUsers(newUsersState));
+    updateUser(editForm);
+  };
 
   return (
     <>
       <Modal
         isOpen={userModalOpen}
         toggleFn={() => handleToggleModal(userModalOpen)}
-        submitFn={() => null}
+        submitFn={handleEditSubmit}
         title='Edit user'
         okButton='Save'
       >
         <User user={editForm} handleChangeFn={handleFormChange}/>
       </Modal>
       <h2 className='title is-4'>Users list</h2>
+      {!Boolean(loggedUser.id) && <LoginCard />}
       <div className='list'>
-        {users.map(user => <UserItem
+        {Boolean(loggedUser.id) && users.map(user => <UserItem
           key={'user_' + user.id}
           user={user}
           toggleTypeFn={() => handleToggleUserType(users, loggedUser, user.id)}

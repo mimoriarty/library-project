@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useLibrary } from '../../library/Library';
 
@@ -8,6 +8,7 @@ const DELAY_NAVBAR_TOGLE = 500;
 export default function Header({ toggleFn }) {
   const [navBarActive, setNavBarActive] = useState(false);
   const [state] = useLibrary();
+  const navigate = useNavigate();
   const { loggedIn } = state;
   const toggleNavBar = () => {
     setNavBarActive(!navBarActive);
@@ -17,7 +18,6 @@ export default function Header({ toggleFn }) {
       toggleNavBar();
     }, DELAY_NAVBAR_TOGLE);
   };
-
 
   return (
     <nav className='navbar' role='navigation' aria-label='main navigation'>
@@ -50,7 +50,7 @@ export default function Header({ toggleFn }) {
         {!Boolean(loggedIn) && <div className='navbar-end is-inline-block-mobile'>
           <div className='navbar-item'>
             <div className='buttons'>
-              <button className='button is-primary'>
+              <button className='button is-primary' onClick={() => navigate('/signup')}>
                 <strong>Sign up</strong>
               </button>
               <button className='button is-light' onClick={() => toggleFn()}>

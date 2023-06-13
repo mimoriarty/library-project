@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLibrary } from '../library/Library';
+import { logOutUser } from '../reducers/libraryActions';
 import { getUserActions} from '../config/userActions';
 import Dropdown from './layout/Dropdown';
 import { getRemainingDays } from '../utils/utils';
@@ -15,10 +16,11 @@ export default function UserItem({
   togglePenaltyFn,
   deleteUserFn,
 }) {
-  const [state] = useLibrary();
+  const [state, dispatch] = useLibrary();
   const { user: loggedUser } = state;
+  const showUserCard = loggedUser.type === LIBRARIAN || user.id === loggedUser.id;
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const userTypeIcon = user.type === 'librarian' ? faBook : faUser;
+  const userTypeIcon = user.type === LIBRARIAN ? faBook : faUser;
   const handleToggleDropdown = () => {
     toggleDropdown();
   };
@@ -32,12 +34,19 @@ export default function UserItem({
   const handleUserDelete = () => {
     deleteUserFn();
   };
+  const handleUserLogout = () => {
+    dispatch(logOutUser());
+  };
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
   const dropdownHandlers = {
     handleUserEdit,
     handleUserPenalty,
     handleUserDelete,
+    handleUserLogout,
   };
+  const userActions = getUserActions(user, loggedUser);
+
+  if (!showUserCard) return null;
 
   return (
     <div className='list-item'>
@@ -69,7 +78,7 @@ export default function UserItem({
           >
             <FontAwesomeIcon icon={userTypeIcon} />
           </button>
-          <button
+          {userActions.length > 0 && <button
             className={'dropdown is-right ' + (dropdownOpen ? 'is-active' : '')}
             onClick={handleToggleDropdown}
             onMouseLeave={handleHideDropdown}
@@ -77,8 +86,8 @@ export default function UserItem({
             <span className='icon is-small dropdown-trigger' aria-controls='dropdown-menu'>
               <FontAwesomeIcon icon={faEllipsisH} />
             </span>
-            <Dropdown actions={getUserActions(user)} handlers={dropdownHandlers} />
-          </button>
+            <Dropdown actions={userActions} handlers={dropdownHandlers} />
+          </button>}
         </div>
       </div>
     </div>
