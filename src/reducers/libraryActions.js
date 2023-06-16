@@ -6,6 +6,7 @@ import {
   TOGGLE_LOGIN_MODAL,
   TOGGLE_USER_MODAL,
   TOGGLE_BOOK_MODAL,
+  REQUEST_BOOK_RETURN,
   TOGGLE_NOTIFICATION,
   TOGGLE_BOOK_DETAIL_MODAL,
   LOAD_BOOKS,
@@ -13,6 +14,7 @@ import {
   SEARCH_BOOKS,
   RELOAD_BOOKS,
   RELOAD_USERS,
+  LOAD_REQUESTS,
 } from './libraryReducer';
 
 export const loginUser = user => ({
@@ -46,6 +48,11 @@ export const toggleBookModal = () => ({
   type: TOGGLE_BOOK_MODAL,
 });
 
+export const requestBookReturn = bookId => ({
+  type: REQUEST_BOOK_RETURN,
+  bookId,
+});
+
 export const toggleNotification = notification => ({
   type: TOGGLE_NOTIFICATION,
   notification,
@@ -76,4 +83,9 @@ export const reloadBooks = () => ({
 
 export const reloadUsers = () => ({
   type: RELOAD_USERS,
+});
+
+export const loadRequests = requests => ({
+  type: LOAD_REQUESTS,
+  requests,
 });

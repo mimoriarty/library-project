@@ -1,1 +1,1 @@
-{"version":3,"sources":["BookCard.sass","BookCard.css"],"names":[],"mappings":"AACE;EACE,cAAA;ACAJ;ADEE;EACE,WAAA;ACAJ","file":"BookCard.css"}
+{"version":3,"sources":["BookCard.sass","../_colors.sass","BookCard.css"],"names":[],"mappings":"AAGE;EACE,cCUQ;ACZZ;AFIE;EACE,WCQY;ACVhB","file":"BookCard.css"}

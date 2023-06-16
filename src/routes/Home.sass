@@ -1,7 +1,9 @@
+@use '../colors'
+
 .status-section
   > p
-    border-bottom: 1px solid #9d9d9d
-    border-top: 1px solid #9d9d9d
+    border-bottom: 1px solid colors.$medium-grey
+    border-top: 1px solid colors.$medium-grey
     padding: 1em 0
 
   ul
@@ -14,7 +16,13 @@
       line-height: 1.8em
 
       &.penalty
-        color: #d32
+        color: colors.$not-available
 
         strong
-          color: #d32
+          color: colors.$not-available
+
+      &.requests
+        color: colors.$dangerous
+
+        strong
+          color: colors.$dangerous

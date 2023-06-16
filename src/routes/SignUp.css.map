@@ -1,1 +1,1 @@
-{"version":3,"sources":["SignUp.sass","SignUp.css"],"names":[],"mappings":"AAAA;EACE,gBAAA;ACCF;ADCE;EACE,WAAA;ACCJ;ADCE;EACE,sBAAA;ACCJ","file":"SignUp.css"}
+{"version":3,"sources":["SignUp.sass","SignUp.css","../_colors.sass"],"names":[],"mappings":"AAEA;EACE,gBAAA;ACDF;ADGE;EACE,WELI;ADIR;ADGE;EACE,sBAAA;ACDJ","file":"SignUp.css"}

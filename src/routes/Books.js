@@ -48,7 +48,7 @@ export default function Books() {
     selectedCat,
     filteredBooks
   } = state;
-  const isLibrarian = user?.id === LIBRARIAN;
+  const isLibrarian = user?.type === LIBRARIAN;
   const [bookDetail, setBookDetail] = useState((books || [])[0]);
   const [formValues, setFormValues] = useState(initialValues);
   const [searchValue, setSearchValue] = useState('');
@@ -264,7 +264,7 @@ export default function Books() {
           )}
         </p>}
       </nav>
-      {books.length === 0 && <p>
+      {books?.length === 0 && <p>
         Sorry our shelves are empty try adding some books to the list!!
       </p>}
       <Table

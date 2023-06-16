@@ -1,3 +1,5 @@
+@use '../../colors'
+
 $layout-breakpoint-small: 385px
 
 @media (max-width: $layout-breakpoint-small)
@@ -15,13 +17,13 @@ $layout-breakpoint-small: 385px
   width: -webkit-fill-available
 
   th
-    color: #6d6d6d !important
+    color: colors.$dark-grey !important
     text-align: center !important
 
   tbody
     tr
       &:hover
-        background-color: #ebebeb
+        background-color: colors.$light-grey
         cursor: pointer
 
     td

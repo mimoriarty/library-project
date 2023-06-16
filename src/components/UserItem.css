@@ -6,12 +6,15 @@
   text-align: right;
 }
 .dropdown-menu .list-item:hover {
-  background-color: #ebebeb;
+  background-color: #dbdbdb;
 }
 .dropdown-menu .list-item-description {
   max-width: none;
 }
 
+.list .list-item.return-alert {
+  background-color: #ff9d9d;
+}
 .list .list-item button.dropdown {
   background-color: #fff;
   border: 1px solid #dbdbdb;

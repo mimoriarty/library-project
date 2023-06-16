@@ -14,8 +14,8 @@ export default function List({
           {items.map((item, i) => 
             <li
               className='list-item is-flex-direction-column'
-              key={i + (item.name)}
-              onClick={handleClick}
+              key={i + item.name + item.id}
+              onClick={() => handleClick(item.id)}
             >
               <p className='list-item-title'>{item.name}</p>
               {Boolean(item.borrowedDate) &&
@@ -26,6 +26,11 @@ export default function List({
               {Boolean(item.returnedDate) &&
                 <p className='list-item-description'>
                   Returned on {getHumanDate(item.returnedDate)}
+                </p>
+              }
+              {Boolean(item.user) &&
+                <p className='list-item-description'>
+                  Requested to @{item.user} {getHumanDate(item.requestDate)}
                 </p>
               }
             </li>

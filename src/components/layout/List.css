@@ -4,11 +4,15 @@
 .list-container .list-item {
   cursor: pointer;
 }
+.list-container .list-item:hover {
+  background-color: #fff;
+}
 .list-container .list-item-title {
   text-align: center;
 }
 .list-container .list-item-description {
   max-width: none !important;
+  text-align: center;
 }
 .list-container .subtitle {
   background-color: #d3d3d3;

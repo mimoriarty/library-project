@@ -17,4 +17,10 @@
 }
 .status-section ul li.penalty strong {
   color: #d32;
+}
+.status-section ul li.requests {
+  color: #79001e;
+}
+.status-section ul li.requests strong {
+  color: #79001e;
 }/*# sourceMappingURL=Home.css.map */

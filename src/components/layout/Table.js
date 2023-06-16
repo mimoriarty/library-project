@@ -10,7 +10,7 @@ export default function Table({
   editFn,
   user,
 }) {
-  const isSession = Boolean(user.id);
+  const isSession = Boolean(user?.id);
   const isLibrarian = user?.type === LIBRARIAN;
   const getBookTags = book => book.genres.map((gen, i) => <span
     key={i + gen}

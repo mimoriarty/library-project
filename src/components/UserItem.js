@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useLibrary } from '../library/Library';
-import { logOutUser } from '../reducers/libraryActions';
-import { getUserActions} from '../config/userActions';
+import { logOutUser, requestBookReturn } from '../reducers/libraryActions';
+import { getUserActions, getReturnableBooks} from '../config/userActions';
+import { saveReturn } from '../services/returnRequest';
 import Dropdown from './layout/Dropdown';
 import { getRemainingDays } from '../utils/utils';
 import { LIBRARIAN } from '../constants';
@@ -17,10 +18,11 @@ export default function UserItem({
   deleteUserFn,
 }) {
   const [state, dispatch] = useLibrary();
-  const { user: loggedUser } = state;
+  const { user: loggedUser, books } = state;
   const showUserCard = loggedUser.type === LIBRARIAN || user.id === loggedUser.id;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userTypeIcon = user.type === LIBRARIAN ? faBook : faUser;
+  const showReturnAlert = getReturnableBooks(user, books)?.length > 0;
   const handleToggleDropdown = () => {
     toggleDropdown();
   };
@@ -37,14 +39,24 @@ export default function UserItem({
   const handleUserLogout = () => {
     dispatch(logOutUser());
   };
+  const handleReturnBookRequest = ({ bookId }) => {
+    dispatch(requestBookReturn(bookId));
+    saveReturn({
+      bookId,
+      userId: user.id,
+      requestDate: new Date().toISOString(),
+      requestComplete: false
+    })
+  }
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
   const dropdownHandlers = {
     handleUserEdit,
     handleUserPenalty,
     handleUserDelete,
+    handleReturnBookRequest,
     handleUserLogout,
   };
-  const userActions = getUserActions(user, loggedUser);
+  const userActions = getUserActions(user, loggedUser, books);
 
   if (!showUserCard) return null;
 
@@ -67,6 +79,7 @@ export default function UserItem({
             penalty: {getRemainingDays(user.penaltyExpirationDate)} left
           </div>}
           {!user.isActive && <div className='tag is-rounded warning ml-1'>inactive</div>}
+          {showReturnAlert && <div className='tag is-rounded danger ml-1'>delayed</div>}
         </div>
       </div>
       <div className='list-item-controls'>

@@ -55,7 +55,9 @@ export const getBorrowDaysUntilPenalty = borrow => {
   return penaltyDate.diff(borrowDate, 'days');
 };
 
-export const getHumanDate = date => moment(date).format('MMMM Do YYYY');
+export const getHumanDate = date => {
+  return date ? moment(date).format('MMMM Do YYYY') : null;
+};
 
 export const getFilteredList = (list, id) => id === 'all'
   ? list
@@ -67,3 +69,5 @@ export const getSearchedList = (list, str) => list.reduce((acc, act) => {
   return [name, author, publisher, ...genres].some(key => key.toLowerCase().includes(str))
     ? [...acc, act] : acc;
 }, []);
+
+export const sortByDate = (a, b) => moment(b.borrowedDate).unix() - moment(a.borrowedDate).unix();

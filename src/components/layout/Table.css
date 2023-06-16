@@ -14,7 +14,7 @@
   text-align: center !important;
 }
 .table tbody tr:hover {
-  background-color: #ebebeb;
+  background-color: #e3e3e3;
   cursor: pointer;
 }
 .table tbody td {

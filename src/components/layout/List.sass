@@ -1,19 +1,24 @@
+@use '../../colors'
+  
 .list-container
   text-align: center
 
   .list-item
     cursor: pointer
+    &:hover
+      background-color: colors.$white
 
   .list-item-title
     text-align: center
 
   .list-item-description
     max-width: none !important
+    text-align: center
 
   .subtitle
-    background-color: #d3d3d3
+    background-color: colors.$light-grey1
     border-radius: 0.25em
-    color: #3d3d3d
+    color: colors.$dark-grey1
     display: inline-block
     margin-bottom: 0.5em !important
     padding: 0.5em 3em

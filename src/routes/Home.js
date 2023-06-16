@@ -3,19 +3,22 @@ import { useLibrary } from '../library/Library';
 import { toggleLoginModal } from '../reducers/libraryActions';
 import UserBadge from '../components/UserBadge';
 import List from '../components/layout/List';
-import { getJoinedDate } from '../utils/utils';
+import { findBy, getJoinedDate } from '../utils/utils';
+import { LIBRARIAN } from '../constants';
 import digitalLibrary from '../assets/images/digital-library.png';
 import './Home.css';
 
 export default function Home() {
   const [state, dispatch] = useLibrary();
   const navigate = useNavigate();
-  const { loggedIn, user, books } = state;
+  const { loggedIn, user, books, users, requestedBooks } = state;
+  const isLibrarian = user.type === LIBRARIAN;
   const reading = user?.history?.filter(book => !book.completed)
     .map(({ id, borrowedDate }) => {
       const { name } = books.find(book => book.id === id);
 
       return {
+        id,
         name,
         borrowedDate,
       };
@@ -25,9 +28,24 @@ export default function Home() {
       const { name } = books.find(book => book.id === id);
 
       return {
+        id,
         name,
         returnedDate,
       };
+    });
+  const requests = requestedBooks?.filter(req => req.userId === user.id);
+  const requestsList = requestedBooks?.filter(req => !req.completed)
+    .map(({ bookId, userId, requestDate }) => {
+      const { name } = findBy(books, 'id', bookId);
+      const user = findBy(users, 'id', userId);
+      
+      return {
+        bookId,
+        userId,
+        requestDate,
+        name,
+        user: user?.name,
+      }
     });
   const handleToggleModal = () => {
     dispatch(toggleLoginModal());
@@ -59,9 +77,12 @@ export default function Home() {
           {Boolean(user.createDate) && <li>
             you joined {getJoinedDate(user.createDate)} &#129395;.
           </li>}
-          <li><strong>{user.bookCount}</strong> books borrowed pending of return.</li>
+          {!isLibrarian && <li><strong>{user.bookCount}</strong> books borrowed pending of return.</li>}
           {Boolean(user.hasPenaltyOngoing) && <li className='penalty'>
             &#129324; A penalty has been placed on your account, <strong>you cannot borrow any more</strong> from Kerberos until the penalty has been resolved, please ask a librarian if you need more info on this subject.
+          </li>}
+          {requests?.length > 0 && <li className='requests'>
+            <strong>You have been asked to return {requests?.length} books, fullfil the request as soon as posible or a librarian could place a penalty onto your account!</strong>
           </li>}
         </ul>
       </section>}
@@ -69,14 +90,21 @@ export default function Home() {
         <List
           title='Book reading'
           items={reading}
-          handleClick={() => navigate('/books')}
+          handleClick={(id) => navigate('/book', { state: { bookId: id } })}
         />
       }
       {completed?.length > 0 &&
         <List
           title='Already finished'
           items={completed}
-          handleClick={() => navigate('/books')}
+          handleClick={(id) => navigate('/book', { state: { bookId: id } })}
+        />
+      }
+      {(isLibrarian && requestedBooks.length > 0) &&
+        <List
+          title='Pending requests'
+          items={requestsList}
+          handleClick={() => navigate('/users')}
         />
       }
     </div>
